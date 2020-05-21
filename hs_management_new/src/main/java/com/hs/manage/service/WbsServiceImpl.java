@@ -42,8 +42,8 @@ public class WbsServiceImpl implements WbsService {
 		
 		WbsInfoVo wbsinfovo = new WbsInfoVo();
 
-		List<User_Info> wbs1 = wbsdao.wbsloginato(u_no);
-			for (User_Info user_info : wbs1) {
+		List<User_Info> wbs4 = wbsdao.wbsloginato(u_no);
+			for (User_Info user_info : wbs4) {
 			wbsinfovo.setU_name(user_info.getU_name());
 			wbsinfovo.setU_no(user_info.getU_no());
 			}

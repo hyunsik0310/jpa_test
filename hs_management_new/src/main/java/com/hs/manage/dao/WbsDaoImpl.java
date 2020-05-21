@@ -33,11 +33,11 @@ public class WbsDaoImpl implements WbsDao {
 	public List<User_Info> wbsloginato(String u_no){
 		EntityManager em = conn.getConnection();
 		
-		List<User_Info> wbs1 = em.createNamedQuery("User_Info.findByuserinfo2", User_Info.class).
+		List<User_Info> wbs4 = em.createNamedQuery("User_Info.findByuserinfo2", User_Info.class).
 				setParameter("u_no", u_no).
 				getResultList();
 	
-		return wbs1;
+		return wbs4;
 	}
 	
 	@Override
