@@ -1,5 +1,6 @@
 package com.hs.manage.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -10,7 +11,8 @@ public class WbsInfoVo {
 	private String u_name;
 	private int min_time;
 	private int max_time;
-	List<Wbs_2020> wbsinfovo;
+	List<Wbs_2020> wbsinfovo_list = new ArrayList<Wbs_2020>();
+
 	public String getU_no() {
 		return u_no;
 	}
@@ -35,17 +37,17 @@ public class WbsInfoVo {
 	public void setMax_time(int max_time) {
 		this.max_time = max_time;
 	}
-	public List<Wbs_2020> getWbsinfovo() {
-		return wbsinfovo;
+	public List<Wbs_2020> getWbsinfovo_list() {
+		return wbsinfovo_list;
 	}
-	public void setWbsinfovo(List<Wbs_2020> wbsinfovo) {
-		this.wbsinfovo = wbsinfovo;
+	public void setWbsinfovo_list(List<Wbs_2020> wbsinfovo_list) {
+		this.wbsinfovo_list = wbsinfovo_list;
 	}
 	@Override
 	public String toString() {
 		return "WbsInfoVo [u_no=" + u_no + ", u_name=" + u_name + ", min_time=" + min_time + ", max_time=" + max_time
-				+ ", wbsinfovo=" + wbsinfovo + "]";
+				+ ", wbsinfovo_list=" + wbsinfovo_list + "]";
 	}
-	
+
 
 }

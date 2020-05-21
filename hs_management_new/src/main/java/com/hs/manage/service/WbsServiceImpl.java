@@ -29,9 +29,7 @@ public class WbsServiceImpl implements WbsService {
 		int count = wbs1.size();		
 		
 		if(count == 1) {
-			mv.setViewName("wbs");
-			mv.addObject("u_no", u_no);
-			mv.addObject("u_password", u_password);
+			mv.setViewName("redirect:/wbsloginato");
 		}else {
 			mv.setViewName("home");
 		}
@@ -50,15 +48,13 @@ public class WbsServiceImpl implements WbsService {
 			wbsinfovo.setU_no(user_info.getU_no());
 			}
 		List<Wbs_2020> wbs2 = wbsdao.wbsloginato2(u_no);
-			wbsinfovo.setWbsinfovo(wbs2);
+			wbsinfovo.setWbsinfovo_list(wbs2);
 		
-			
 		List<Workplaceinfo> wbs3 = wbsdao.wbsloginato3(u_no);
 			for (Workplaceinfo workplaceinfo : wbs3) {
 				wbsinfovo.setMin_time(workplaceinfo.getMin_time());
 				wbsinfovo.setMax_time(workplaceinfo.getMax_time());
 			}
-			
 		
 			mv.addObject("wbsinfovo", wbsinfovo);
 			mv.setViewName("wbs");

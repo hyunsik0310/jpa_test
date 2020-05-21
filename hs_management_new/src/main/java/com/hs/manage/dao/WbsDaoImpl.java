@@ -31,15 +31,15 @@ public class WbsDaoImpl implements WbsDao {
 	}
 	@Override
 	public List<User_Info> wbsloginato(String u_no){
-
 		EntityManager em = conn.getConnection();
 		
-		List<User_Info> wbs1 = em.createNamedQuery("User_Info.findByuserinfo", User_Info.class).
+		List<User_Info> wbs1 = em.createNamedQuery("User_Info.findByuserinfo2", User_Info.class).
 				setParameter("u_no", u_no).
 				getResultList();
 	
 		return wbs1;
 	}
+	
 	@Override
 	public List<Wbs_2020> wbsloginato2(String u_no){
 

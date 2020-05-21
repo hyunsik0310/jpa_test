@@ -55,14 +55,14 @@ public class WbsController {
 	}
 	
 
-	@RequestMapping("/wbsLoginAto")
+	@RequestMapping("/wbsloginato")
 	public ModelAndView wbsloginato(String u_no, String u_password) {
 
-		ModelAndView wbs1 = WbsService.wbsloginato(u_no);
+		ModelAndView wbsinfovo = WbsService.wbsloginato(u_no);
 
 		
 		
-		return wbs1;
+		return wbsinfovo;
 	}
 	
 	

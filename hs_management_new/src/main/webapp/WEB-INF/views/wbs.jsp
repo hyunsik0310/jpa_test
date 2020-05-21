@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<h1>${name}</h1>
+<h1>${wbsinfovo.u_name}</h1>
 
 <fieldset style="width: 300px;">
 	<legend>
@@ -17,10 +17,10 @@
 
 	<table border=1>
 		<tr>
-			<th style="background-color: lightblue;">社員名</th><td>${wbsinfo.u_name}</td>
+			<th style="background-color: lightblue;">社員名</th><td>${wbsinfovo.u_name}</td>
 		</tr>
 		<tr>
-			<th style="background-color: lightblue;">社員番号</th><td>${v.u_no}</td>
+			<th style="background-color: lightblue;">社員番号</th><td>${wbsinfovo.u_no}</td>
 		</tr>
 	</table>
 
@@ -55,18 +55,18 @@
 	<tr style="background-color: lightblue">
 		<th>日付<th>開始時間</th><th>終了時間</th><th>合計時間</th><th>休日区分</th><th>メモ</th>
 	</tr>
-	<c:forEach items="${wbsinfovo}" var = "v">
+	<c:forEach items="${wbsinfovo.wbsinfovo_list}" var = "v">
 	<tr>
-		<td>${wbsinfovo.date }</td>
+		<td>${v.date}</td>
 		<td>
-			${wbsinfovo.start_time}
+			${v.start_time}
 		</td>
 		<td>
-			${wbsinfovo.end_time}
+			${v.end_time}
 		</td>
-		<td>${wbsinfovo.rest_time}</td>
-		<td>${wbsinfovo.vacation_type}</td>
-		<td>${wbsinfovo.memo}</td>
+		<td>${v.rest_time}</td>
+		<td>${v.vacation_type}</td>
+		<td>${v.memo}</td>
 	</tr>
 	</c:forEach>
 </table>
