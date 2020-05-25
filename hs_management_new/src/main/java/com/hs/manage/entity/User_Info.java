@@ -12,7 +12,7 @@ import javax.persistence.Table;
 @NamedQueries({ 
 	@NamedQuery(name = "User_Info.wbscheck", query = "select u from User_Info u where u.u_no = :u_no"),
 	@NamedQuery(name = "User_Info.findByuserinfo", query = "select u from User_Info u where u.u_no = :u_no and u.u_password = :u_password"),
-	@NamedQuery(name = "User_Info.findByuserinfo2", query = "select u from User_Info u where u.u_no = :u_no")
+	@NamedQuery(name = "User_Info.findByu_no", query = "select u from User_Info u where u.u_no = :u_no")
 
 })
 public class User_Info {

@@ -9,10 +9,10 @@ public class WbsInfoVo {
 	
 	private String u_no;
 	private String u_name;
-	private int min_time;
-	private int max_time;
-	List<Wbs_2020> wbsinfovo_list = new ArrayList<Wbs_2020>();
-
+	private String min_time;
+	private String max_time;
+	List<Wbs> wbslist = new ArrayList<Wbs>();
+	
 	public String getU_no() {
 		return u_no;
 	}
@@ -25,29 +25,30 @@ public class WbsInfoVo {
 	public void setU_name(String u_name) {
 		this.u_name = u_name;
 	}
-	public int getMin_time() {
+	public String getMin_time() {
 		return min_time;
 	}
-	public void setMin_time(int min_time) {
+	public void setMin_time(String min_time) {
 		this.min_time = min_time;
 	}
-	public int getMax_time() {
+	public String getMax_time() {
 		return max_time;
 	}
-	public void setMax_time(int max_time) {
+	public void setMax_time(String max_time) {
 		this.max_time = max_time;
 	}
-	public List<Wbs_2020> getWbsinfovo_list() {
-		return wbsinfovo_list;
+	public List<Wbs> getWbslist() {
+		return wbslist;
 	}
-	public void setWbsinfovo_list(List<Wbs_2020> wbsinfovo_list) {
-		this.wbsinfovo_list = wbsinfovo_list;
+	public void setWbslist(List<Wbs> wbslist) {
+		this.wbslist = wbslist;
 	}
 	@Override
 	public String toString() {
 		return "WbsInfoVo [u_no=" + u_no + ", u_name=" + u_name + ", min_time=" + min_time + ", max_time=" + max_time
-				+ ", wbsinfovo_list=" + wbsinfovo_list + "]";
+				+ ", wbslist=" + wbslist + "]";
 	}
+
 
 
 }

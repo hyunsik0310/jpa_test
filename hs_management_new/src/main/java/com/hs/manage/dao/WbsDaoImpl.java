@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.hs.manage.entity.User_Info;
 import com.hs.manage.entity.Wbs_2020;
-import com.hs.manage.entity.Workplaceinfo;
+import com.hs.manage.entity.WorkPlaceInfo;
 
 @Repository
 public class WbsDaoImpl implements WbsDao {
@@ -29,40 +29,43 @@ public class WbsDaoImpl implements WbsDao {
 	
 		return wbs1;
 	}
+
 	@Override
-	public List<User_Info> wbsloginato(String u_no){
-		EntityManager em = conn.getConnection();
-		
-		List<User_Info> wbs4 = em.createNamedQuery("User_Info.findByuserinfo2", User_Info.class).
-				setParameter("u_no", u_no).
-				getResultList();
-	
-		return wbs4;
-	}
-	
-	@Override
-	public List<Wbs_2020> wbsloginato2(String u_no){
+	public List<User_Info> getuserinfo(String u_no) {
 
 		EntityManager em = conn.getConnection();
 		
-		List<Wbs_2020> wbs2 = em.createNamedQuery("Wbs_2020.wbscheck2", Wbs_2020.class).
+		List<User_Info> result = em.createNamedQuery("User_Info.findByu_no", User_Info.class).
 				setParameter("u_no", u_no).
 				getResultList();
 	
-		return wbs2;
+		return result;
 	}
+
 	@Override
-	public List<Workplaceinfo> wbsloginato3(String u_no){
+	public List<Wbs_2020> getwbs2020(String u_no) {
 
 		EntityManager em = conn.getConnection();
 		
-		List<Workplaceinfo> wbs3 = em.createNamedQuery("Workplaceinfo.wbscheck3", Workplaceinfo.class).
+		List<Wbs_2020> result = em.createNamedQuery("Wbs_2020.findByu_no", Wbs_2020.class).
 				setParameter("u_no", u_no).
 				getResultList();
 	
-		return wbs3;
+		return result;
 	}
 
+	@Override
+	public List<WorkPlaceInfo> getworkplaceinfo(String u_no) {
+
+		EntityManager em = conn.getConnection();
+		
+		List<WorkPlaceInfo> result = em.createNamedQuery("WorkPlaceInfo.findByu_no", WorkPlaceInfo.class).
+				setParameter("u_no", u_no).
+				getResultList();
+	
+		return result;
+	}
+	
 	
 
 }

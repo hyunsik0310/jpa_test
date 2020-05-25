@@ -1,5 +1,6 @@
 package com.hs.manage.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,9 +9,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.hs.manage.dao.WbsDao;
 import com.hs.manage.entity.User_Info;
+import com.hs.manage.entity.Wbs;
 import com.hs.manage.entity.WbsInfoVo;
 import com.hs.manage.entity.Wbs_2020;
-import com.hs.manage.entity.Workplaceinfo;
+import com.hs.manage.entity.WorkPlaceInfo;
 
 @Service
 public class WbsServiceImpl implements WbsService {
@@ -18,47 +20,63 @@ public class WbsServiceImpl implements WbsService {
 	@Autowired
 	WbsDao wbsdao;
 	
-	
 	@Override
 	public ModelAndView wbslogincheck (String u_no, String u_password) {
 		
-		List<User_Info> wbs1 = wbsdao.wbslogincheck(u_no, u_password);
+		List<User_Info> result = wbsdao.wbslogincheck(u_no, u_password);
+		
+		int count = result.size();		
 		
 		ModelAndView mv = new ModelAndView();
 		
-		int count = wbs1.size();		
-		
 		if(count == 1) {
-			mv.setViewName("redirect:/wbsloginato");
+			mv.addObject("u_no", u_no);
+			mv.setViewName("redirect:getwbsinfo");
 		}else {
 			mv.setViewName("home");
 		}
 		
 		return mv;
 	}@Override
-	public ModelAndView wbsloginato (String u_no) {
+	public ModelAndView getwbsinfo (String u_no) {
 		
-		ModelAndView mv = new ModelAndView();
+		ModelAndView mv = new ModelAndView("wbs");
+		List<Wbs_2020> wbs_2020 = new ArrayList<Wbs_2020>();
+		List<User_Info> user_info = new ArrayList<User_Info>();
+		List<WorkPlaceInfo> workplaceinfo = new ArrayList<WorkPlaceInfo>();
 		
-		WbsInfoVo wbsinfovo = new WbsInfoVo();
-
-		List<User_Info> wbs4 = wbsdao.wbsloginato(u_no);
-			for (User_Info user_info : wbs4) {
-			wbsinfovo.setU_name(user_info.getU_name());
-			wbsinfovo.setU_no(user_info.getU_no());
-			}
-		List<Wbs_2020> wbs2 = wbsdao.wbsloginato2(u_no);
-			wbsinfovo.setWbsinfovo_list(wbs2);
+		user_info = wbsdao.getuserinfo(u_no);
+		wbs_2020 = wbsdao.getwbs2020(u_no);
+		workplaceinfo = wbsdao.getworkplaceinfo(u_no);
 		
-		List<Workplaceinfo> wbs3 = wbsdao.wbsloginato3(u_no);
-			for (Workplaceinfo workplaceinfo : wbs3) {
-				wbsinfovo.setMin_time(workplaceinfo.getMin_time());
-				wbsinfovo.setMax_time(workplaceinfo.getMax_time());
-			}
+		WbsInfoVo vo = new WbsInfoVo();
+		vo.setU_name(user_info.get(0).getU_name());
+		vo.setU_no(user_info.get(0).getU_no());
+		vo.setMax_time(String.valueOf(workplaceinfo.get(0).getMax_time()));
+		vo.setMin_time(String.valueOf(workplaceinfo.get(0).getMin_time()));
 		
-			mv.addObject("wbsinfovo", wbsinfovo);
-			mv.setViewName("wbs");
-
+		List<Wbs> wbslist = new ArrayList<Wbs>();
+		
+		for(Wbs_2020 wbs : wbs_2020) {
+			Wbs wbsvo = new Wbs();
+			wbsvo.setDate(wbs.getDate());
+			wbsvo.setStart_h(wbs.getStart_time().substring(0,2));
+			wbsvo.setStart_m(wbs.getStart_time().substring(2,4));
+			wbsvo.setEnd_h(wbs.getEnd_time().substring(0, 2));
+			wbsvo.setEnd_m(wbs.getEnd_time().substring(2, 4));
+			wbsvo.setTotal_h("8");
+			wbsvo.setVacation_type(wbs.getVacation_type());
+			wbsvo.setMemo(wbs.getMemo());
+			
+			wbslist.add(wbsvo);
+		}
+		
+	
+		
+		vo.setWbslist(wbslist);
+		
+		mv.addObject("wbsinfo", vo);
+		
 		return mv;
 	}
 	

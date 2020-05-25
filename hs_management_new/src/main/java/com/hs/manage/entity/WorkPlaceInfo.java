@@ -9,11 +9,11 @@ import javax.persistence.Table;
 @Table(name="workplaceinfo")
 
 @NamedQuery(	
-        name = "Workplaceinfo.wbscheck3",
-        query = "select u from Workplaceinfo u where u.u_no = :u_no")
+        name = "WorkPlaceInfo.findByu_no",
+        query = "select u from WorkPlaceInfo u where u.u_no = :u_no")
 
  
-public class Workplaceinfo {
+public class WorkPlaceInfo {
 	
 	   @Id
 	   private int no;

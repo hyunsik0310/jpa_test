@@ -9,7 +9,7 @@ import javax.persistence.Table;
 @Table(name="wbs_2020")
 
 @NamedQuery(	
-        name = "Wbs_2020.wbscheck2",
+        name = "Wbs_2020.findByu_no",
         query = "select u from Wbs_2020 u where u.u_no = :u_no"
 )
 

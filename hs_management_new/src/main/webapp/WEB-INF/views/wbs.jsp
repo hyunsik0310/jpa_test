@@ -17,10 +17,10 @@
 
 	<table border=1>
 		<tr>
-			<th style="background-color: lightblue;">社員名</th><td>${wbsinfovo.u_name}</td>
+			<th style="background-color: lightblue;">社員名</th><td>${wbsinfo.u_name}</td>
 		</tr>
 		<tr>
-			<th style="background-color: lightblue;">社員番号</th><td>${wbsinfovo.u_no}</td>
+			<th style="background-color: lightblue;">社員番号</th><td>${wbsinfo.u_no}</td>
 		</tr>
 	</table>
 
@@ -35,16 +35,14 @@
 		</tr>
 	</table>
 	<br>
-
 	<table border=1>
 		<tr>
-			<th style="background-color: lightblue;">最低勤務時間</th><td>${wbsinfovo.min_time}</td>
+			<th style="background-color: lightblue;">最低勤務時間</th><td>${wbsinfo.min_time}</td>
 		</tr>
 		<tr>
-			<th style="background-color: lightblue;">最大勤務時間</th><td>${wbsinfovo.max_time}</td>
+			<th style="background-color: lightblue;">最大勤務時間</th><td>${wbsinfo.max_time}</td>
 		</tr>
 	</table>
-
 </fieldset>
 
 <br>
@@ -55,23 +53,44 @@
 	<tr style="background-color: lightblue">
 		<th>日付<th>開始時間</th><th>終了時間</th><th>合計時間</th><th>休日区分</th><th>メモ</th>
 	</tr>
-	<c:forEach items="${wbsinfovo.wbsinfovo_list}" var = "v">
-	<tr>
-		<td>${v.date}</td>
-		<td>
-			${v.start_time}
-		</td>
-		<td>
-			${v.end_time}
-		</td>
-		<td>${v.rest_time}</td>
-		<td>${v.vacation_type}</td>
-		<td>${v.memo}</td>
-	</tr>
+	<c:forEach items="${wbsinfo.wbslist}" var = "wbs">
+		<tr>
+			<td>${wbs.date}</td>
+			<td>
+				${wbs.start_h}時　${wbs.start_h}分　
+			</td>
+			<td>
+				${wbs.end_h}時　${wbs.end_m}分
+			</td>
+			<td>
+			int starth = Integer.parseInt(${wbs.start_h});
+			int endh = Integer.parseInt(${wbs.end_h});
+
+			starth+endh
+			
+			</td>
+	
+	
+	
+	
+			<td><%-- ${wbs.vacation_type} --%>
+				<c:choose>
+					<c:when test="${wbs.vacation_type == 0}">
+					휴일
+					</c:when>
+					<c:when test="${wbs.vacation_type == 1}">
+					근무
+					</c:when>
+				</c:choose>
+			</td>
+			<td>${wbs.memo}</td>
+		</tr>
 	</c:forEach>
+	
+
 </table>
 
-
+<br>
 <input type = "button" value = "등록">
 
 </body>
