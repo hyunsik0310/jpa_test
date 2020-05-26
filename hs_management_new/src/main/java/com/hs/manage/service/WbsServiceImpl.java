@@ -64,14 +64,25 @@ public class WbsServiceImpl implements WbsService {
 			wbsvo.setStart_m(wbs.getStart_time().substring(2,4));
 			wbsvo.setEnd_h(wbs.getEnd_time().substring(0, 2));
 			wbsvo.setEnd_m(wbs.getEnd_time().substring(2, 4));
-			wbsvo.setTotal_h("8");
+			
+			int time = (((Integer.valueOf(wbsvo.getEnd_h())*60 + Integer.valueOf(wbsvo.getEnd_m())) -
+					(Integer.valueOf(wbsvo.getStart_h())*60 + Integer.valueOf(wbsvo.getStart_m())))/60);
+			int minute = (((Integer.valueOf(wbsvo.getEnd_h())*60 + Integer.valueOf(wbsvo.getEnd_m())) -
+					(Integer.valueOf(wbsvo.getStart_h())*60 + Integer.valueOf(wbsvo.getStart_m())))%60);
+			
+			int totaltime = time*60 + minute;
+			
+			
+			wbsvo.setTotal_h(String.valueOf(time));
+			wbsvo.setTotal_m(String.valueOf(minute));
+			
+			wbsvo.setTotaltime_h(totaltime);
+			
 			wbsvo.setVacation_type(wbs.getVacation_type());
 			wbsvo.setMemo(wbs.getMemo());
-			
+
 			wbslist.add(wbsvo);
 		}
-		
-	
 		
 		vo.setWbslist(wbslist);
 		

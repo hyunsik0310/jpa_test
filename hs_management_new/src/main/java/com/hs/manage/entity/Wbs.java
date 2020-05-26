@@ -8,9 +8,11 @@ public class Wbs {
 	private String end_h;
 	private String end_m;
 	private String total_h;
+	private String total_m;
+	private int totaltime_h;
+	private String totaltime_m;
 	private String vacation_type;
 	private String memo;
-	
 	public String getDate() {
 		return date;
 	}
@@ -47,6 +49,24 @@ public class Wbs {
 	public void setTotal_h(String total_h) {
 		this.total_h = total_h;
 	}
+	public String getTotal_m() {
+		return total_m;
+	}
+	public void setTotal_m(String total_m) {
+		this.total_m = total_m;
+	}
+	public int getTotaltime_h() {
+		return totaltime_h;
+	}
+	public void setTotaltime_h(int totaltime_h) {
+		this.totaltime_h = totaltime_h;
+	}
+	public String getTotaltime_m() {
+		return totaltime_m;
+	}
+	public void setTotaltime_m(String totaltime_m) {
+		this.totaltime_m = totaltime_m;
+	}
 	public String getVacation_type() {
 		return vacation_type;
 	}
@@ -59,6 +79,9 @@ public class Wbs {
 	public void setMemo(String memo) {
 		this.memo = memo;
 	}
+
+
 	
+
 	
 }
