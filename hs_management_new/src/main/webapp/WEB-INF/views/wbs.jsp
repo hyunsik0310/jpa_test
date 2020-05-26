@@ -77,7 +77,7 @@
 				　${wbs.total_h}時間${wbs.total_m}分　
 			</td>
 	
-			<td><%-- ${wbs.vacation_type} --%>
+			<td>
 				<c:choose>
 					<c:when test="${wbs.vacation_type == 0}">
 					
@@ -96,10 +96,7 @@
 					</c:when>
 				</c:choose>
 			</td>
-			<td>
-			
-			</td>
-			<%-- <td>${wbs.memo}　　　　　</td> --%>
+			<td>${wbs.memo}　　　　　</td>
 		</tr>
 	</c:forEach>
 			　　　　　
