@@ -13,6 +13,9 @@ public class Wbs {
 	private String totaltime_m;
 	private String vacation_type;
 	private String memo;
+	private String rest_h;
+	private String rest_m;
+	
 	public String getDate() {
 		return date;
 	}
@@ -79,7 +82,20 @@ public class Wbs {
 	public void setMemo(String memo) {
 		this.memo = memo;
 	}
-
+	public String getRest_h() {
+		return rest_h;
+	}
+	public void setRest_h(String rest_h) {
+		this.rest_h = rest_h;
+	}
+	public String getRest_m() {
+		return rest_m;
+	}
+	public void setRest_m(String rest_m) {
+		this.rest_m = rest_m;
+	}
+	
+	
 
 	
 

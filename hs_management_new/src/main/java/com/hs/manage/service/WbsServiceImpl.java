@@ -13,6 +13,7 @@ import com.hs.manage.entity.Wbs;
 import com.hs.manage.entity.WbsInfoVo;
 import com.hs.manage.entity.Wbs_2020;
 import com.hs.manage.entity.WorkPlaceInfo;
+import com.hs.manage.service.util.DateUtil;
 
 @Service
 public class WbsServiceImpl implements WbsService {
@@ -41,6 +42,8 @@ public class WbsServiceImpl implements WbsService {
 	public ModelAndView getwbsinfo (String u_no) {
 		
 		ModelAndView mv = new ModelAndView("wbs");
+		DateUtil dateUtil = new DateUtil();
+		
 		List<Wbs_2020> wbs_2020 = new ArrayList<Wbs_2020>();
 		List<User_Info> user_info = new ArrayList<User_Info>();
 		List<WorkPlaceInfo> workplaceinfo = new ArrayList<WorkPlaceInfo>();
@@ -65,19 +68,22 @@ public class WbsServiceImpl implements WbsService {
 			wbsvo.setEnd_h(wbs.getEnd_time().substring(0, 2));
 			wbsvo.setEnd_m(wbs.getEnd_time().substring(2, 4));
 			
-			int time = (((Integer.valueOf(wbsvo.getEnd_h())*60 + Integer.valueOf(wbsvo.getEnd_m())) -
-					(Integer.valueOf(wbsvo.getStart_h())*60 + Integer.valueOf(wbsvo.getStart_m())))/60);
-			int minute = (((Integer.valueOf(wbsvo.getEnd_h())*60 + Integer.valueOf(wbsvo.getEnd_m())) -
-					(Integer.valueOf(wbsvo.getStart_h())*60 + Integer.valueOf(wbsvo.getStart_m())))%60);
-			
-			int totaltime = time*60 + minute;
-			
-			
-			wbsvo.setTotal_h(String.valueOf(time));
-			wbsvo.setTotal_m(String.valueOf(minute));
-			
-			wbsvo.setTotaltime_h(totaltime);
-			
+//			int time = (((Integer.valueOf(wbsvo.getEnd_h())*60 + Integer.valueOf(wbsvo.getEnd_m())) -
+//					(Integer.valueOf(wbsvo.getStart_h())*60 + Integer.valueOf(wbsvo.getStart_m())))/60);
+//			int minute = (((Integer.valueOf(wbsvo.getEnd_h())*60 + Integer.valueOf(wbsvo.getEnd_m())) -
+//					(Integer.valueOf(wbsvo.getStart_h())*60 + Integer.valueOf(wbsvo.getStart_m())))%60);
+//
+//			int totaltime = time*60 + minute; 
+//			
+//			wbsvo.setTotal_h(String.valueOf(time));
+//			wbsvo.setTotal_m(String.valueOf(minute));
+//			
+//			wbsvo.setTotaltime_h(totaltime);
+
+			wbsvo.setRest_h(wbs.getRest_time().substring(0,2));
+			wbsvo.setRest_m(wbs.getRest_time().substring(2,4));
+			wbsvo.setTotal_h(String.valueOf(dateUtil.timeConv(wbs.getStart_time(), wbs.getEnd_time(), wbs.getRest_time())));
+//			wbsvo.setVacation_type(dateUtil.vacationCatConv(wbs.getVacation_type()));
 			wbsvo.setVacation_type(wbs.getVacation_type());
 			wbsvo.setMemo(wbs.getMemo());
 

@@ -61,7 +61,7 @@
 <table border=1>
 
 	<tr style="background-color: lightblue">
-		<th>日付<th>開始時間</th><th>終了時間</th><th>合計時間</th><th>休日区分</th><th>メモ</th>
+		<th>日付<th>開始時間</th><th>終了時間</th><th>休憩時間</th><th>合計時間</th><th>休日区分</th><th>メモ</th>
 	</tr>
 	<c:set var = "sum" value = "0" />
 	<c:forEach items="${wbsinfo.wbslist}" var = "wbs">
@@ -74,7 +74,10 @@
 				　${wbs.end_h}時${wbs.end_m}分　
 			</td>
 			<td>
-				　${wbs.total_h}時間${wbs.total_m}分　
+				　${wbs.rest_h}時${wbs.rest_m}分　
+			</td>
+			<td>
+				　${wbs.total_h}
 			</td>
 	
 			<td>
