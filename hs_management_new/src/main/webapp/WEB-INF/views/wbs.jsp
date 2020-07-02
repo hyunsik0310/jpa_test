@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page session="false" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 <!DOCTYPE html>
 <html>
@@ -10,7 +10,6 @@
 </head>
 <body>
 
-<h1>${wbsinfovo.u_name}</h1>
 
 <fieldset style="width: 300px;">
 	<legend>
@@ -32,19 +31,13 @@
 		<tr>
 			<th style="background-color: lightblue;">勤務日合計</th><td>17日</td>
 		</tr>
-			<c:set var = "sum" value = "0" />
-		<c:forEach items="${wbsinfo.wbslist}" var = "wbs">
-				<c:set var = "sum" value = "${sum + wbs.totaltime_h}"/>
-		</c:forEach>	
 		<tr>
-			<th style="background-color: lightblue;">勤務時間合計</th>
-				<td>
-				<fmt:parseNumber  type="number" value="${sum/60}" integerOnly="true" />時間
-				<c:out value = "${sum%60}" />分 
-				</td>
+			<th style="background-color: lightblue;">勤務時間合計</th><td>134時間</td>
 		</tr>
 	</table>
+
 	<br>
+
 	<table border=1>
 		<tr>
 			<th style="background-color: lightblue;">最低勤務時間</th><td>${wbsinfo.min_time}</td>
@@ -57,59 +50,84 @@
 
 <br>
 
-
 <table border=1>
-
 	<tr style="background-color: lightblue">
-		<th>日付<th>開始時間</th><th>終了時間</th><th>休憩時間</th><th>合計時間</th><th>休日区分</th><th>メモ</th>
+		<th>日付<th>開始時間</th><th>終了時間</th><th>合計時間</th><th>休日区分</th><th>メモ</th>
 	</tr>
-	<c:set var = "sum" value = "0" />
-	<c:forEach items="${wbsinfo.wbslist}" var = "wbs">
-		<tr>
-			<td>${wbs.date}</td>
-			<td>
-				　${wbs.start_h}時${wbs.start_m}分　
-			</td>
-			<td>
-				　${wbs.end_h}時${wbs.end_m}分　
-			</td>
-			<td>
-				　${wbs.rest_h}時${wbs.rest_m}分　
-			</td>
-			<td>
-				　${wbs.total_h}
-			</td>
-	
-			<td>
-				<c:choose>
-					<c:when test="${wbs.vacation_type == 0}">
-					
+	<c:forEach var="wbs" items="${wbsinfo.wbslist }">
+	<tr>
+		<td style="color:${wbs.dayColor }">${wbs.date }${wbs.day }</td>
+		<td>
+			<select>
+				<c:forEach begin="0" end="23" varStatus="i">
+					<c:choose>
+					<c:when test="${i.index == wbs.start_h}">
+						<option selected="selected"><fmt:formatNumber value="${i.index }" pattern="00"></fmt:formatNumber></option>
 					</c:when>
-					<c:when test="${wbs.vacation_type == 1}">
-					오전휴가
+					<c:otherwise>
+						<option><fmt:formatNumber value="${i.index }" pattern="00"></fmt:formatNumber></option>
+					</c:otherwise>
+			<%-- ${wbs.start_h }시 ${wbs.start_m }분 --%>
+					</c:choose>
+				</c:forEach>
+			</select>시
+			<select>
+				<c:forEach begin="0" end="59" step="15" varStatus="i">
+					<c:choose>
+					<c:when test="${i.index == wbs.start_m}">
+						<option selected="selected"><fmt:formatNumber value="${i.index }" pattern="00"></fmt:formatNumber></option>
 					</c:when>
-					<c:when test="${wbs.vacation_type == 2}">
-					오휴휴가
+					<c:otherwise>
+						<option><fmt:formatNumber value="${i.index }" pattern="00"></fmt:formatNumber></option>
+					</c:otherwise>
+					<%-- ${wbs.start_h }시 ${wbs.start_m }분 --%>
+					</c:choose>
+				</c:forEach>
+			</select>분
+		</td>
+		<td>
+			<select>
+				<c:forEach begin="0" end="23" varStatus="i">
+					<c:choose>
+					<c:when test="${i.index == wbs.end_h}">
+						<option selected="selected"><fmt:formatNumber value="${i.index }" pattern="00"></fmt:formatNumber></option>
 					</c:when>
-					<c:when test="${wbs.vacation_type == 3}">
-					종일휴가
+					<c:otherwise>
+						<option><fmt:formatNumber value="${i.index }" pattern="00"></fmt:formatNumber></option>
+					</c:otherwise>
+					</c:choose>
+				</c:forEach>
+			</select>시
+			<select>
+				<c:forEach begin="0" end="59" step="15" varStatus="i">
+					<c:choose>
+					<c:when test="${i.index == wbs.end_m}">
+						<option selected="selected"><fmt:formatNumber value="${i.index }" pattern="00"></fmt:formatNumber></option>
 					</c:when>
-					<c:when test="${wbs.vacation_type == 4}">
-					조퇴
-					</c:when>
-				</c:choose>
-			</td>
-			<td>${wbs.memo}　　　　　</td>
-		</tr>
+					<c:otherwise>
+						<option><fmt:formatNumber value="${i.index }" pattern="00"></fmt:formatNumber></option>
+					</c:otherwise>
+					<%-- ${wbs.start_h }시 ${wbs.start_m }분 --%>
+					</c:choose>
+				</c:forEach>
+			</select>분
+		</td>
+		<td>
+			${wbs.total_h }시간
+		</td>
+		<td>
+			${wbs.vacation_type }
+		</td>
+		<td>
+			${wbs.memo }
+		</td>
+	</tr>
 	</c:forEach>
-			　　　　　
-	
+
+
 
 </table>
-
-<br>
 <input type = "button" value = "등록">
 
 </body>
 </html>
-

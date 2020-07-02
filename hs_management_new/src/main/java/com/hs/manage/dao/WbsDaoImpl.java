@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.hs.manage.entity.Calendar;
 import com.hs.manage.entity.User_Info;
 import com.hs.manage.entity.Wbs_2020;
 import com.hs.manage.entity.WorkPlaceInfo;
@@ -65,6 +66,15 @@ public class WbsDaoImpl implements WbsDao {
 	
 		return result;
 	}
+
+	@Override
+	public List<Calendar> getJoin() {
+		EntityManager em = conn.getConnection();
+		List<Calendar> result = em.createNamedQuery("Calendar.jointest", Calendar.class).
+				getResultList();
+		return result;
+	}
+
 	
 	
 

@@ -9,12 +9,14 @@ public class Wbs {
 	private String end_m;
 	private String total_h;
 	private String total_m;
-	private int totaltime_h;
+	private String totaltime_h;
 	private String totaltime_m;
 	private String vacation_type;
 	private String memo;
 	private String rest_h;
 	private String rest_m;
+	private String day;
+	private String dayColor;
 	
 	public String getDate() {
 		return date;
@@ -58,10 +60,10 @@ public class Wbs {
 	public void setTotal_m(String total_m) {
 		this.total_m = total_m;
 	}
-	public int getTotaltime_h() {
+	public String getTotaltime_h() {
 		return totaltime_h;
 	}
-	public void setTotaltime_h(int totaltime_h) {
+	public void setTotaltime_h(String totaltime_h) {
 		this.totaltime_h = totaltime_h;
 	}
 	public String getTotaltime_m() {
@@ -93,6 +95,25 @@ public class Wbs {
 	}
 	public void setRest_m(String rest_m) {
 		this.rest_m = rest_m;
+	}
+	public String getDay() {
+		return day;
+	}
+	public void setDay(String day) {
+		this.day = day;
+	}
+	public String getDayColor() {
+		return dayColor;
+	}
+	public void setDayColor(String dayColor) {
+		this.dayColor = dayColor;
+	}
+	@Override
+	public String toString() {
+		return "Wbs [date=" + date + ", start_h=" + start_h + ", start_m=" + start_m + ", end_h=" + end_h + ", end_m="
+				+ end_m + ", total_h=" + total_h + ", total_m=" + total_m + ", totaltime_h=" + totaltime_h
+				+ ", totaltime_m=" + totaltime_m + ", vacation_type=" + vacation_type + ", memo=" + memo + ", rest_h="
+				+ rest_h + ", rest_m=" + rest_m + ", day=" + day + ", dayColor=" + dayColor + "]";
 	}
 	
 	

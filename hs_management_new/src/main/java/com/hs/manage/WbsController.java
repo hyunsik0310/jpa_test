@@ -33,13 +33,20 @@ public class WbsController {
 	}
 	
 
-	@RequestMapping("getwbsinfo")
+//	@RequestMapping("getwbsinfo")
+//	public ModelAndView getwbsinfo(String u_no) {
+//
+//		ModelAndView mv = WbsService.getwbsinfo(u_no);
+//
+//		return mv;
+//	}
+	
+	@RequestMapping("/getwbsinfo")
 	public ModelAndView getwbsinfo(String u_no) {
-
-		ModelAndView mv = WbsService.getwbsinfo(u_no);
-
+		
+		ModelAndView mv = WbsService.getJoin(u_no);
+		
 		return mv;
 	}
-	
 	
 }
