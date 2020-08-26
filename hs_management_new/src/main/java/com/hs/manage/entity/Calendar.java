@@ -13,7 +13,7 @@ import javax.persistence.Table;
 @NamedQueries({
    @NamedQuery(
          name = "Calendar.jointest",
-         query = "select c from Calendar c LEFT JOIN c.wbs_2020"
+         query = "select c from Calendar c LEFT JOIN c.wbs_2020 where c.yyyy = :yyyy and c.mm = :mm"
          ),
 })
 public class Calendar {

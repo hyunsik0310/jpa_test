@@ -1,6 +1,7 @@
 package com.hs.manage.service.util;
 
 import java.text.DecimalFormat;
+import java.time.LocalDate;
 
 public class DateUtil {
 //근무형태 변환 기능
@@ -62,21 +63,31 @@ public class DateUtil {
 		//날짜 주말 색표시
 		public String dayConv(String day) {
 			if("0".equals(day)) {
-				return "(月)";
+				return "(MON)";
 			} else if("1".equals(day)) {
-				return "(火)";
+				return "(TUE)";
 			} else if("2".equals(day)) {
-				return "(水)";
+				return "(WED)";
 			} else if("3".equals(day)) {
-				return "(木)";
+				return "(TUR)";
 			} else if("4".equals(day)) {
-				return "(金)";
+				return "(FRI)";
 			} else if("5".equals(day)) {
-				return "(土)";
+				return "(SAT)";
 			} else if("6".equals(day)) {
-				return "(日)";
+				return "(SUN)";
 			} else {
 				return "";
 			}
+		}
+
+
+		public String[] getToday() {
+			LocalDate today = LocalDate.now();
+			String yyyy = today.toString().substring(0, 4);
+			String mm = today.toString().substring(5, 7);
+			String[] date = {yyyy,mm};
+			
+			return date;
 		}
 }

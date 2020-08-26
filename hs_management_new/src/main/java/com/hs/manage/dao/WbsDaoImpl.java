@@ -68,11 +68,35 @@ public class WbsDaoImpl implements WbsDao {
 	}
 
 	@Override
-	public List<Calendar> getJoin() {
+	public List<Calendar> getJoin(String date) {
 		EntityManager em = conn.getConnection();
 		List<Calendar> result = em.createNamedQuery("Calendar.jointest", Calendar.class).
+				setParameter("yyyy", date.substring(0, 4)).
+				setParameter("mm", date.substring(4, 6)).
 				getResultList();
+				
 		return result;
+	}
+
+	@Override
+	public int regWbs2020(List<Wbs_2020> wbsList) {
+		EntityManager em = conn.getConnection();	
+		
+		em.getTransaction().begin();
+		try {
+			for(Wbs_2020 wbs : wbsList) {
+				em.persist(wbs);
+			}
+			em.getTransaction().commit();
+			
+			return wbsList.size();
+			
+		} catch (Exception e) {
+			em.getTransaction().rollback();
+			return 8;
+		}
+		
+		
 	}
 
 	

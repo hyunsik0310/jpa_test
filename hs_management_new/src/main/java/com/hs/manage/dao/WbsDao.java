@@ -18,6 +18,8 @@ public interface WbsDao {
 
 	public List<WorkPlaceInfo> getworkplaceinfo(String u_no);
 
-	public List<Calendar> getJoin();
+	public List<Calendar> getJoin(String date);
+	
+	public int regWbs2020(List<Wbs_2020> wbsList);
 
 }
